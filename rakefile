@@ -1,13 +1,34 @@
-# Rakefile
-require 'rubygems'
-require 'rake'
-require 'echoe'
+# # Rakefile
+# require 'rubygems'
+# require 'rake'
+# require 'echoe'
+# 
+# Echoe.new('wkhtmltopdf_for_rails', '0.0.1') do |p|
+#   p.description    = "Provides WKHTMLTOPDF for ruby on rails."
+#   p.url            = "http://github.com/aratak/wkhtmltopdf_for_rails"
+#   p.author         = "Alexey Osipenko"
+#   p.email          = "alexey@osipenko.in.ua"
+#   p.ignore_pattern = ["pkg/*"]
+#   p.development_dependencies = []
+#   p.executables << "wkhtmltopdf"
+# end
+# 
+# 
 
-Echoe.new('wkhtmltopdf_for_rails', '0.0.1') do |p|
-  p.description    = "Provides WKHTMLTOPDF for ruby on rails."
-  p.url            = "http://github.com/aratak/wkhtmltopdf_for_rails"
-  p.author         = "Alexey Osipenko"
-  p.email          = "alexey@osipenko.in.ua"
-  p.ignore_pattern = ["pkg/*"]
-  p.development_dependencies = []
+require 'rubygems'
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "wkhtmltopdf_for_rails"
+    gemspec.summary = "Provides WKHTMLTOPDF for ruby on rails."
+    gemspec.description = "Provides WKHTMLTOPDF for ruby on rails."
+    gemspec.email = "alexey@osipenko.in.ua"
+    gemspec.homepage = "http://github.com/aratak/wkhtmltopdf_for_rails"
+    gemspec.authors = ["Alexey Osipenko"]
+    gemspec.executables << "wkhtmltopdf"
+  end
+  Jeweler::GemcutterTasks.new
+rescue LoadError
+  puts "Jeweler not available. Install it with: sudo gem install jeweler -s http://gemcutter.org"
 end

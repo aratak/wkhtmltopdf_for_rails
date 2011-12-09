@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-if RUBY_PLATFORM =~ /linux/ && RUBY_PLATFORM =~ /386/
+if RUBY_PLATFORM =~ /linux/ && RUBY_PLATFORM =~ /[3|4]86/
   executable = 'wkhtmltopdf_linux_386'
 elsif RUBY_PLATFORM =~ /linux/ && RUBY_PLATFORM =~ /64/
   executable = 'wkhtmltopdf-amd64'

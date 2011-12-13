@@ -25,7 +25,7 @@ module RenderPdf
       html_string = generate_html(options)
       timestamp = Time.now.strftime("%y%m%d%H%M%S")
       html_file_name = "#{timestamp}_#{options[:pdf]}.html"
-      html_file_path = File.join(RAILS_ROOT, 'tmp', html_file_name)
+      html_file_path = File.join(::Rails.root, 'tmp', html_file_name)
       File.open(html_file_path, 'w') do |f|
         f.write(html_string)
       end

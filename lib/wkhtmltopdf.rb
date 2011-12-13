@@ -13,10 +13,8 @@ class Wkhtmltopdf
   def generate
     wkhtml_call = "wkhtmltopdf "
     if !@source.nil?
-      puts "source"
       wkhtml_call << "#{@source}"
     else
-      puts "local html"
       wkhtml_call << "#{@html_file}"
     end
     wkhtml_call << " #{@params_string} - -q"

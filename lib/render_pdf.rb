@@ -45,17 +45,17 @@ module RenderPdf
     render_options[:template] = options.delete(:template)
     render_options[:layout] = options.delete(:layout) if options.has_key?(:layout)
     
-    html_string = render_to_string(render_options)
+    html_string = render_to_string(render_options).to_str
     
     # re-route absolute paths for images, scripts and stylesheets
-    html_string.gsub!( /src=["']+([^:]+?)["']/i ) { |m| "src=\"#{RAILS_ROOT}/public" + $1 + '"' }
-    html_string.gsub!( /<link href=["']+([^:]+?)["']/i ) { |m| "<link href=\"#{RAILS_ROOT}/public" + $1 + '"' }
+    html_string.gsub!( /src=["']+([^:]+?)["']/i ) { |m| "src=\"#{::Rails.root}/public" + $1 + '"' }
+    html_string.gsub!( /<link href=["']+([^:]+?)["']/i ) { |m| "<link href=\"#{::Rails.root}/public" + $1 + '"' }
     
     # Remove asset ids on images, scripts, and stylesheets with a regex
     html_string.gsub!( /src=["'](\S+\?\d*)["']/i ) { |m| 'src="' + $1.split('?').first + '"' }
     html_string.gsub!( /<link href=["'](\S+\?\d*)["']/i ) { |m| '<link href="' + $1.split('?').first + '"' }
     
-    return html_string
+    return html_string.html_safe
   end
   
 end

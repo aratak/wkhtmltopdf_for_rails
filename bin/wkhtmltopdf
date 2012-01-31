@@ -1,8 +1,8 @@
 #!/usr/bin/ruby
 
-if RUBY_PLATFORM =~ /linux/ && RUBY_PLATFORM =~ /[3|4]86/
+if RUBY_PLATFORM =~ /linux/ && 1.size == 4
   executable = 'wkhtmltopdf_linux_386'
-elsif RUBY_PLATFORM =~ /linux/ && RUBY_PLATFORM =~ /64/
+elsif RUBY_PLATFORM =~ /linux/ && 1.size == 8
   executable = 'wkhtmltopdf-amd64'
 elsif RUBY_PLATFORM =~ /darwin/
   executable = 'wkhtmltopdf_darwin_386'

@@ -18,7 +18,9 @@ class Wkhtmltopdf
       wkhtml_call << "#{@html_file}"
     end
     wkhtml_call << " #{@params_string} - -q"
-    return `#{wkhtml_call}`
+    `#{wkhtml_call}`.tap do
+      sleep 1
+    end
   end
   
   private

@@ -12,17 +12,16 @@ module RenderPdf
   def make_pdf(options)
     if options.has_key?(:template)
       html_string = generate_html(options)
-      timestamp = Time.now.strftime("%y%m%d%H%M%S")
-      html_file_name = "#{timestamp}_#{options[:pdf]}.html"
-      html_file_path = File.join(::Rails.root, 'tmp', html_file_name)
-      File.open(html_file_path, 'w') do |f|
-        f.write(html_string)
-      end
-      options[:html_file] = html_file_path
+      file = Tempfile.new([options[:pdf], '.html'])
+      file.write(html_string)
+      file.close
+      options[:html_file] = file.path
     end
-    
+
     pdf = Wkhtmltopdf.new(options)
     pdf.generate
+  ensure
+    file.unlink if file
   end
   
   def generate_html(options)

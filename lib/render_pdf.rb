@@ -1,21 +1,10 @@
 module RenderPdf
-  
   def render_to_pdf(options = {})
-    make_pdf(options)
-    # pdf_file_name = "#{options[:file_path]}/#{options[:pdf]}.pdf"
-    send_pdf_options = {
+    send_data(
+      make_pdf(options),
       :filename => "#{options[:pdf]}.pdf",
-      :type     => 'application/pdf'
-    }
-    # if options[:delete_generated_pdf]
-    #   send_pdf_options[:stream] = false
-    # end
-    
-    send_data(make_pdf(options), send_pdf_options)
-    
-    # if options[:delete_generated_pdf] && File.exists?(pdf_file_name)
-    #   File.delete(pdf_file_name)
-    # end
+      :type  => 'application/pdf'
+    )
   end
   
   private
@@ -34,10 +23,6 @@ module RenderPdf
     
     pdf = Wkhtmltopdf.new(options)
     pdf.generate
-
-    # if html_file_path.present? && File.exists?(html_file_path)
-    #   File.delete(html_file_path)
-    # end
   end
   
   def generate_html(options)
@@ -57,6 +42,4 @@ module RenderPdf
     
     return html_string.html_safe
   end
-  
 end
-

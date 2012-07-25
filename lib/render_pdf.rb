@@ -27,6 +27,7 @@ module RenderPdf
   def generate_html(options)
     render_options = {}
     render_options[:template] = options.delete(:template)
+    render_options[:formats] = options.delete(:formats)
     render_options[:layout] = options.delete(:layout) if options.has_key?(:layout)
     
     html_string = render_to_string(render_options).to_str

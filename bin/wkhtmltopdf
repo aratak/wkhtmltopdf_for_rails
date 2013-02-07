@@ -1,10 +1,14 @@
 #!/usr/bin/ruby
+require 'rbconfig'
 
-if RUBY_PLATFORM =~ /linux/ && RUBY_PLATFORM =~ /[3|4]86/
+platform = RbConfig::CONFIG['host_os']
+cpu = RbConfig::CONFIG['host_cpu']
+
+if platform =~ /linux/ && cpu =~ /[3|4]86/
   executable = 'wkhtmltopdf_linux_386'
-elsif RUBY_PLATFORM =~ /linux/ && RUBY_PLATFORM =~ /64/
+elsif platform =~ /linux/ && cpu =~ /64/
   executable = 'wkhtmltopdf-amd64'
-elsif RUBY_PLATFORM =~ /darwin/
+elsif platform =~ /darwin/
   executable = 'wkhtmltopdf_darwin_386'
 else
   raise "Invalid platform. Must be running linux or intel-based Mac OS."

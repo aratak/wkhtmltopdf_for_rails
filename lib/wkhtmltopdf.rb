@@ -9,7 +9,8 @@ class Wkhtmltopdf
   end
 
   def generate
-    wkhtml_call = "wkhtmltopdf "
+    wkhtml_call = File.join(File.dirname(__FILE__), "..", "bin", "wkhtmltopdf ")
+
     if !@source.nil?
       wkhtml_call << "#{@source}"
     else

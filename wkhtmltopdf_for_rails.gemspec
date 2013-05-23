@@ -9,9 +9,6 @@ Gem::Specification.new do |s|
   s.description = %q{Provides WKHTMLTOPDF for ruby on rails.}
   s.email = %q{alexey@osipenko.in.ua}
   s.files  = `git ls-files`.split("\n")
-  s.extra_rdoc_files = [
-    "README"
-  ]
   s.test_files = [
     "test/test_helper.rb",
     "test/wkhtmltopdf_test.rb",

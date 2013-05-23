@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{wkhtmltopdf_for_rails}
-  s.version = "0.0.5"
+  s.version = "0.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alexey Osipenko"]
@@ -14,12 +14,12 @@ Gem::Specification.new do |s|
   s.email = %q{alexey@osipenko.in.ua}
   s.executables = ["wkhtmltopdf", "wkhtmltopdf-amd64", "wkhtmltopdf-binary.rb", "wkhtmltopdf_darwin_386", "wkhtmltopdf_linux_386", "wkhtmltopdf"]
   s.extra_rdoc_files = [
-    "README"
+    "README.md"
   ]
   s.files = [
     ".gitignore",
      "Manifest",
-     "README",
+     "README.md",
      "VERSION",
      "bin/wkhtmltopdf",
      "bin/wkhtmltopdf-amd64",

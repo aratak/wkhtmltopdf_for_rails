@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.summary = %q{Provides WKHTMLTOPDF for ruby on rails.}
-  s.add_development_dependency 'gem-compiler'
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION

@@ -6,13 +6,11 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    gem-compiler (0.2.0)
     rake (10.0.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  gem-compiler
   rake
   wkhtmltopdf_for_rails!

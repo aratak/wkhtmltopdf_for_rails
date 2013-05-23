@@ -1,9 +1,11 @@
 #!/usr/bin/env rake
 require 'bundler/setup'
-require "bundler/gem_tasks"
+require 'bundler/gem_tasks'
+require 'rake/testtask'
 
 task :clean do
   sh "rm -rf pkg"
+  sh "rm -rf bin"
 end
 
 def get_binary_gemspec(platform = RUBY_PLATFORM)
@@ -11,8 +13,6 @@ def get_binary_gemspec(platform = RUBY_PLATFORM)
   gemspec.platform = Gem::Platform.new(platform)
   gemspec
 end
-
-#binary_gem_name = "pkg/wkhtmltopdf_for_rails-#{WkhtmltopdfForRails::VERSION}-#{Gem::Platform::CURRENT}.gem"
 
 begin
   binary_gem_name = File.basename get_binary_gemspec.cache_file
@@ -23,27 +23,29 @@ end
 desc "build a binary gem #{binary_gem_name}"
 task :binary do
   gemspec = get_binary_gemspec
-  # We don't need most things for the binary
-  gemspec.files = []
-  gemspec.files += ['lib/libv8.rb', 'lib/libv8/version.rb']
-  gemspec.files += ['ext/libv8/arch.rb', 'ext/libv8/location.rb', 'ext/libv8/paths.rb']
-  gemspec.files += ['ext/libv8/.location.yml']
-  # V8
-  gemspec.files += Dir['vendor/v8/include/*']
-  gemspec.files += Dir['vendor/v8/out/**/*.a']
-  FileUtils.chmod 'a+r', gemspec.files
+  gemspec.files += ['bin/wkhtmltopdf']
+
   FileUtils.mkdir_p 'pkg'
+  FileUtils.mkdir_p 'bin'
+
+  FileUtils.cp "ext/wkhtmltopdf/wkhtmltopdf_#{gemspec.platform.os}", "bin/wkhtmltopdf"
+
   package = if Gem::VERSION < '2.0.0'
     Gem::Builder.new(gemspec).build
   else
     require 'rubygems/package'
     Gem::Package.build(gemspec)
   end
+
   FileUtils.mv(package, 'pkg')
+  FileUtils.remove_dir('bin')
 end
 
-task :debug do
-  p get_binary_gemspec.files
+Rake::TestTask.new do |t|
+  t.libs << 'test'
+  t.test_files = FileList['test/**/*.rb']
+  t.verbose = true
 end
 
-task :default => :spec
+desc "Run tests"
+task :default => :test

@@ -1,5 +1,7 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path('../lib/wkhtmltopdf_for_rails/version', __FILE__)
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'wkhtmltopdf_for_rails/version'
 
 Gem::Specification.new do |s|
   s.name = %q{wkhtmltopdf_for_rails}
@@ -18,15 +20,6 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.summary = %q{Provides WKHTMLTOPDF for ruby on rails.}
-
-  if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
-    s.specification_version = 3
-
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-    else
-    end
-  else
-  end
+  s.extensions = 'ext/mkrf_conf.rb'
 end
 

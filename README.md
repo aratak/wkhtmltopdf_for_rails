@@ -29,6 +29,8 @@ gem 'wkhtmltopdf_for_rails'
 gem 'wkhtmltopdf_for_rails'
 
 # Controller action
+
+```
 def generate_report
   @data = fetch_report_data
 
@@ -53,6 +55,7 @@ def generate_report
     end
   end
 end
+```
 
 # Limitations and Considerations
 
